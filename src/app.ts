@@ -6,5 +6,6 @@ const app = express();
 app.use(express.json());
 app.use('/products', router.productRouter);
 app.use('/orders', router.ordersRouter);
+app.use('/users', router.usersRouter);
 
 export default app;

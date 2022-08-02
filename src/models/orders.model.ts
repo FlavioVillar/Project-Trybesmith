@@ -4,8 +4,7 @@ import IOrders from '../interfaces/orders.interface';
 
 export default async function getAll(): Promise<IOrders[]> {
   const query = 'SELECT * FROM Trybesmith.Orders';
-  const [result] = await connection.execute(query);
-  
+  const [result] = await connection.execute(query);  
   const allOrders = result as IOrders[];
 
   const ordersArr = await Promise.all(allOrders.map(async (order: IOrders) => {

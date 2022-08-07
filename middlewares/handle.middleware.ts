@@ -4,7 +4,7 @@ import { StatusCodes } from 'http-status-codes';
 export const errorHandler:
 ErrorRequestHandler = async (err, _req: Request, res: Response, next: NextFunction) => {
   const { name, message, details } = err;
-  console.log(`name: ${name}`);
+  // console.log(`name: ${name}`);
 
   switch (name) {
     case 'ValidationError':

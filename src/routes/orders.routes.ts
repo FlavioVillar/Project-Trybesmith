@@ -1,8 +1,18 @@
 import { Router } from 'express';
 import ordersController from '../controllers/orders.controller';
+import OrdersMiddlewares from '../../middlewares/order.middleware';
+import TokenMiddlewares from '../../middlewares/token.middleware';
 
 const router = Router();
 
-router.get('/', ordersController);
+router.post(
+  '/',
+  TokenMiddlewares.validateTokenMiddleware,
+
+  OrdersMiddlewares.validateProductsIds,
+
+  ordersController.create,
+);
+router.get('/', ordersController.getAll);
 
 export default router;

@@ -53,7 +53,6 @@ class UsersMiddleware {
 
   public static validateUserPassword = (req: Request, res: Response, next: NextFunction) => {
     const { password } = req.body;
-    console.log('password: ', password);
     
     if (password === undefined) {
       return res.status(StatusCodes.BAD_REQUEST).json({ message: '"password" is required' });

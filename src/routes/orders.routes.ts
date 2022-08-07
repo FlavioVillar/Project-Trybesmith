@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import ordersController from '../controllers/orders.controller';
+import * as ordersController from '../controllers/orders.controller';
 import OrdersMiddlewares from '../../middlewares/order.middleware';
 import TokenMiddlewares from '../../middlewares/token.middleware';
 

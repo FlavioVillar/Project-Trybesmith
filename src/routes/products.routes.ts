@@ -1,14 +1,14 @@
 import { Router } from 'express';
 import * as productController from '../controllers/products.controller';
-import productMidleware from '../../middlewares/products.middleware';
+import productMiddleware from '../../middlewares/products.middleware';
 
 const router = Router();
 
 router.post(
   '/',
-  productMidleware.validateProductAmount,
+  productMiddleware.validateProductAmount,
 
-  productMidleware.validateProductName,
+  productMiddleware.validateProductName,
 
   productController.create,
 );

@@ -5,9 +5,13 @@ import IUserCredentials from '../interfaces/user.credentials.interface';
 import * as usersService from '../services/users.service';
 
 export async function createUser(req: Request, res: Response) {
-  const getUser = req.body as IUsers;
-  const user = await usersService.createUser(getUser);  
-  res.status(StatusCodes.CREATED).json({ token: user });
+  try {
+    const getUser = req.body as IUsers;
+    const user = await usersService.createUser(getUser);  
+    return res.status(StatusCodes.CREATED).json({ token: user });
+  } catch (error) {
+    return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json(error);
+  }
 }
 
 export async function login(req: Request, res: Response, next: NextFunction) {

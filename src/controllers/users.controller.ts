@@ -18,8 +18,8 @@ export async function login(req: Request, res: Response, next: NextFunction) {
   try {
     const getUser = req.body as IUserCredentials;
     const user = await usersService.login(getUser);
-    res.status(StatusCodes.OK).json({ token: user });
+    return res.status(StatusCodes.OK).json({ token: user });
   } catch (error) {
-    next(error);
+    return next(error);
   }
 }

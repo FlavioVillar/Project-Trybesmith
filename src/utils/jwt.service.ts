@@ -3,10 +3,10 @@ import jwt from 'jsonwebtoken';
 
 dotenv.config();
 
-const { JWT_SECRET } = process.env;
+const JWT = process.env.JWT_SECRET || 'secret';
 
 export function createToken(user: string) {
-  const token = jwt.sign({ data: user }, JWT_SECRET as string, {
+  const token = jwt.sign({ data: user }, JWT as string, {
     expiresIn: '365d',
     algorithm: 'HS256',
   });
@@ -15,7 +15,7 @@ export function createToken(user: string) {
 
 export function validateToken(token: string) {
   try {
-    const { data } = jwt.verify(token, JWT_SECRET as string) as { data: string };
+    const { data } = jwt.verify(token, JWT as string) as { data: string };
     return data;
   } catch (error) {
     const err = new Error('Invalid token');
@@ -24,6 +24,6 @@ export function validateToken(token: string) {
 }
 
 export function getUserByToken(token: string) {
-  const { data } = jwt.verify(token, JWT_SECRET as string) as { data: string };
+  const { data } = jwt.verify(token, JWT as string) as { data: string };
   return data;
 }
